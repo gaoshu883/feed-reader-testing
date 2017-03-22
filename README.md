@@ -7,10 +7,10 @@ Testing suites were written with Jasmine for testing a pre-existing RSS feeds ap
 Here you can see the testing results: [http://lu3xiang.top/feed-reader-testing/](http://lu3xiang.top/feed-reader-testing/)
 
 ## Run locally
-+ `git clone`
++ `git clone https://github.com/gaoshu883/feed-reader-testing.git`
 
     ```bash
-    $> cd /path/to/the-project-folder/
+    $> cd /path/to/the-project-folder
     ```
 
 + Open the `index.html` (make sure you are online) to see the testing results
