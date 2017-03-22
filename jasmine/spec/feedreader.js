@@ -58,6 +58,7 @@ $(function() {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
+        // Expect that the body element has `menu-hidden` class
         it('is hidden by default', function() {
             expect($('body').hasClass('menu-hidden')).toBe(true);
         });
@@ -66,7 +67,8 @@ $(function() {
          * should have two expectations: does the menu display when
          * clicked and does it hide when clicked again.
          */
-        // 这里是事件驱动测试
+        // Trigger the click event twice and
+        // check the menu-hidden class of body element each time
         it('changes visibility when menu icon is clicked', function() {
             $('.menu-icon-link').trigger('click');
             expect($('body').hasClass('menu-hidden')).toBe(false);
@@ -84,15 +86,16 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+
         beforeEach(function(done) {
             loadFeed(0, function() {
-                console.log('Send the first feed request');
                 done();
             });
         });
 
+        // Only when `done` of `beforeEach` is triggered,
+        // `are loaded` testing spec can be executed
         it('are loaded', function(done) {
-            console.log('Initial Entries are loaded');
             expect($('.feed').find('.entry').length).not.toBe(0);
             done();
         });
@@ -104,20 +107,20 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        // Cache for previous content
         var preContent;
-        console.log('executing next testing suite');
-
+        // The older feed
+        // Put the older content into the `preContent` variable
         beforeEach(function(done) {
-            console.log('Sending the second feed request');
             loadFeed(1, function() {
                 preContent = $('.feed').html();
                 done();
             });
 
         });
-
+        // The new feed
+        // Expect the new content is not the older one
         it('changes the content', function(done) {
-            console.log('Send the third feed request');
             loadFeed(2, function() {
                 expect($('.feed').html()).not.toBe(preContent);
                 done();

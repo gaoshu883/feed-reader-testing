@@ -37,7 +37,7 @@ function init() {
  * This function all supports a callback as the second parameter
  * which will be called after everything has run successfully.
  */
-// 利用Ajax技术异步请求RSS Atom信息
+// Send request via AJAX
 function loadFeed(id, cb) {
     var feedUrl = allFeeds[id].url,
         feedName = allFeeds[id].name;
@@ -84,13 +84,11 @@ function loadFeed(id, cb) {
 /* Google API: Loads the Feed Reader API and defines what function
  * to call when the Feed Reader API is done loading.
  */
-// 没有这个模块也能正常工作
-// 也不会报错
-// 因为Google Feed API已经被废弃了
+// The app works well without this statement
+// So it can be commented.
 google.load('feeds', '1');
 
-// 当文档全部加载完成，google API也加载完成后(可选)
-// 调用init函数
+// Init function will be triggered when document and Google API is ready.
 google.setOnLoadCallback(init);
 
 /* All of this functionality is heavily reliant upon the DOM, so we
@@ -135,7 +133,5 @@ $(function() {
     menuIcon.on('click', function() {
         $('body').toggleClass('menu-hidden');
     });
-}());
-// 这里为什么多了一幅小括号，会出问题啊
-// 加了圆括号，就会先执行函数表达式
-// 然后等到DOM准备就绪再触发其参数undefined
+}); // Here I removed the parentheses
+
