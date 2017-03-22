@@ -96,7 +96,7 @@ $(function() {
         // Only when `done` of `beforeEach` is triggered,
         // `are loaded` testing spec can be executed
         it('are loaded', function(done) {
-            expect($('.feed').find('.entry').length).not.toBe(0);
+            expect($('.feed').find('.entry').length).toBeGreaterThan(0);
             done();
         });
     });
