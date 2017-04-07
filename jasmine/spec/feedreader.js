@@ -31,10 +31,13 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
+        // 此处进行了修改
+        // 对url进行格式匹配
         it('each feed has a URL', function() {
             allFeeds.forEach(function(item) {
+                var regularExpressionUrl = /^((ht|f)tps?):\/\/([\w\-]+(\.[\w\-]+)*\/)*[\w\-]+(\.[\w\-]+)*\/?(\?([\w\-\.,@?^=%&:\/~\+#]*)+)?/; // 检查 URL 格式是否正确的正规表达式
                 expect(item.url).toBeDefined();
-                expect(item.url).not.toBe('');
+                expect(item.url).toMatch(regularExpressionUrl); // 检查格式
             });
         });
 
@@ -86,18 +89,20 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-
+        // 修改成简化形式
+        // 不需要使用匿名函数
         beforeEach(function(done) {
-            loadFeed(0, function() {
-                done();
-            });
+            // console.log('我要去加载数据了');
+            loadFeed(0, done);
         });
 
         // Only when `done` of `beforeEach` is triggered,
         // `are loaded` testing spec can be executed
-        it('are loaded', function(done) {
+        // 这里做了修改：并不是异步测试，所以不需要done参数
+        it('are loaded', function() {
+            // console.log('我应该后出来');
             expect($('.feed').find('.entry').length).toBeGreaterThan(0);
-            done();
+            // done();
         });
     });
 
