@@ -92,7 +92,6 @@ $(function() {
         // 修改成简化形式
         // 不需要使用匿名函数
         beforeEach(function(done) {
-            // console.log('我要去加载数据了');
             loadFeed(0, done);
         });
 
@@ -100,7 +99,6 @@ $(function() {
         // `are loaded` testing spec can be executed
         // 这里做了修改：并不是异步测试，所以不需要done参数
         it('are loaded', function() {
-            // console.log('我应该后出来');
             expect($('.feed').find('.entry').length).toBeGreaterThan(0);
             // done();
         });
@@ -114,6 +112,7 @@ $(function() {
          */
         // Cache for previous content
         var preContent;
+        // console.log('3');
         // The older feed
         // Put the older content into the `preContent` variable
         beforeEach(function(done) {
